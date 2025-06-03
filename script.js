@@ -150,7 +150,7 @@ Function Showcase Overlapping Gallery
 	
 			
 		} //End Overlapping Gallery
-
+ShowcaseOverlapping()
 // MAGNETIC EFFECT
 const magnets = document.querySelectorAll(".magnetic");
 
