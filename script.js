@@ -153,3 +153,54 @@ Function Showcase Overlapping Gallery
 	
 			
 		} //End Overlapping Gallery
+const magnets = document.querySelectorAll(".magnetic");
+
+  const activateMagnet = (event) => {
+    const magnet = event.currentTarget;
+    const magnetic_text = magnet.querySelector(".text");
+    const boundBox = magnet.getBoundingClientRect();
+    const newX = (event.clientX - boundBox.left) / magnet.offsetWidth - 0.5;
+    const newY = (event.clientY - boundBox.top) / magnet.offsetHeight - 0.5;
+    const magnet_strength = 50;
+    const magnetic_text_strength = 100;
+
+    gsap.to(magnet, {
+      duration: 1,
+      x: newX * magnet_strength,
+      y: newY * magnet_strength,
+      ease: "power4.out",
+    });
+
+    gsap.to(magnetic_text, {
+      duration: 1,
+      x: newX * magnetic_text_strength,
+      y: newY * magnetic_text_strength,
+      ease: "power4.out",
+    });
+  }
+
+  const resetMagnet = (event) => {
+    const magnet = event.currentTarget;
+    const magnetic_text = magnet.querySelector(".text");
+
+    gsap.to(magnet, {
+      duration: 1,
+      x: 0,
+      y: 0,
+      ease: "elastic.out",
+    });
+
+    gsap.to(magnetic_text, {
+      duration: 1,
+      x: 0,
+      y: 0,
+      ease: "elastic.out",
+    });
+  }
+
+  // Attach event listeners to each .magnetic element
+  magnets.forEach(magnet => {
+    magnet.addEventListener("mousemove", activateMagnet);
+    magnet.addEventListener("mouseleave", resetMagnet);
+  });
+
