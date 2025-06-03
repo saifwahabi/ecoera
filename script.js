@@ -83,78 +83,73 @@ gsap.from(".highlight", {
 });
 
 // OVERLAPPING GALLERY FUNCTION
-function ShowcaseOverlapping() {
-  gsap.utils.toArray(".overlapping-gallery").forEach((pinnedGallery) => {
-    const pinnedImages = pinnedGallery.querySelectorAll(".overlapping-image");
+/*--------------------------------------------------
+Function Showcase Overlapping Gallery
+---------------------------------------------------*/
+	
+	function ShowcaseOverlapping() {
+				gsap.utils.toArray('.overlapping-gallery').forEach((pinnedGallery) => {
+					
+					const pinnedImages = pinnedGallery.querySelectorAll('.overlapping-image');
+					
+						function setImagesProperties() {								
+							gsap.set(pinnedImages, { height: window.innerHeight});						
+						}
+						
+						setImagesProperties();
+					
+				
+					pinnedImages.forEach((pImage, i, arr) => {
+						if (i < arr.length - 1) {
+							const durationMultiplier = arr.length - i - 1;
+							
+							
+							
+							ScrollTrigger.create({
+								trigger: pImage,
+								start: function() {
+									const centerPin = (window.innerHeight - pImage.querySelector('.overlapping-image-inner').offsetHeight) / 2;
+									return "top +=" + centerPin;
+								},
+								end: function() {
+									const durationHeight = pImage.offsetHeight * durationMultiplier + (pImage.offsetHeight - pImage.querySelector('.overlapping-image-inner').offsetHeight)/2;
+									return "+=" + durationHeight;
+								},
+								pin: true,
+								pinSpacing: false,
+								scrub: true,
+							});
+							
+							const animationProperties = {
+								scale: 0.75,
+								opacity: 1,
+								zIndex: 0,
+								duration: 1,
+								ease: Linear.easeNone
+							};
+							
 
-    function setImagesProperties() {
-      gsap.set(pinnedImages, { height: window.innerHeight });
-    }
+							ScrollTrigger.create({
+								trigger: pImage,
+								start: function() {
+									const centerPin = (window.innerHeight - pImage.querySelector('.overlapping-image-inner').offsetHeight) / 2;
+									return "top +=" + centerPin;
+								},
+								end: function() {
+									const durationHeight = pImage.offsetHeight + (pImage.offsetHeight - pImage.querySelector('.overlapping-image-inner').offsetHeight) / 2;
+									return "+=" + durationHeight;
+								},
+								scrub: true,
+								animation: gsap.to(pImage.querySelector('.overlapping-image-inner'), animationProperties),
+							});
 
-    setImagesProperties();
-
-    pinnedImages.forEach((pImage, i, arr) => {
-      if (i < arr.length - 1) {
-        const durationMultiplier = arr.length - i - 1;
-
-        ScrollTrigger.create({
-          trigger: pImage,
-          start: () => {
-            const centerPin =
-              (window.innerHeight -
-                pImage.querySelector(".overlapping-image-inner").offsetHeight) /
-              2;
-            return "top +=" + centerPin;
-          },
-          end: () => {
-            const durationHeight =
-              pImage.offsetHeight * durationMultiplier +
-              (pImage.offsetHeight -
-                pImage.querySelector(".overlapping-image-inner").offsetHeight) /
-                2;
-            return "+=" + durationHeight;
-          },
-          pin: true,
-          pinSpacing: false,
-          scrub: true
-        });
-
-        const animationProperties = {
-          scale: 0.75,
-          opacity: 1,
-          zIndex: 0,
-          duration: 1,
-          ease: Linear.easeNone
-        };
-
-        ScrollTrigger.create({
-          trigger: pImage,
-          start: () => {
-            const centerPin =
-              (window.innerHeight -
-                pImage.querySelector(".overlapping-image-inner").offsetHeight) /
-              2;
-            return "top +=" + centerPin;
-          },
-          end: () => {
-            const durationHeight =
-              pImage.offsetHeight +
-              (pImage.offsetHeight -
-                pImage.querySelector(".overlapping-image-inner").offsetHeight) /
-                2;
-            return "+=" + durationHeight;
-          },
-          scrub: true,
-          animation: gsap.to(
-            pImage.querySelector(".overlapping-image-inner"),
-            animationProperties
-          )
-        });
-      }
-    });
-  });
-}
-ShowcaseOverlapping();
+						}
+					});
+				
+				});
+	
+			
+		} //End Overlapping Gallery
 
 // MAGNETIC EFFECT
 const magnets = document.querySelectorAll(".magnetic");
