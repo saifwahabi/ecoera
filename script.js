@@ -21,6 +21,8 @@ const loadingTimeline = gsap.timeline({
       duration: 1,
       onComplete: () => {
         document.querySelector(".loading").style.display = "none";
+        document.querySelector(".loading .logo").style.display = "none";
+        document.querySelector(".loading .overlay").style.display = "none";
         document.body.className = "scroll"; // Enable scroll after loading
       }
     });
