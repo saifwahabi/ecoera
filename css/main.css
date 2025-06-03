@@ -607,8 +607,11 @@ Showcase Overlapping Gallery
 }
 .newsletter h1 {
   font-family: "poppins";
-  color: #f6f2ed;
   font-size: 5vw;
   text-align: center;
-  text-decoration: none;
-}/*# sourceMappingURL=main.css.map */
+}
+
+.newsletter h1 a {
+    text-decoration: none;
+    color: #f6f2ed;
+}
