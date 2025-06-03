@@ -605,9 +605,10 @@ Showcase Overlapping Gallery
 .newsletter {
   padding: 10%;
 }
-.newsletter h3 {
+.newsletter a {
   font-family: "poppins";
   color: #f6f2ed;
   font-size: 5vw;
   text-align: center;
+  text-decoration: none;
 }/*# sourceMappingURL=main.css.map */
